@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.0;
+
+contract StudentData {
+    struct Student {
+        uint256 id;
+        string name;
+        uint256 age;
+    }
+
+    Student[] public students;
+
+    event StudentAdded(uint256 id, string name, uint256 age);
+
+    function addStudent(uint256 id, string memory name, uint256 age) external {
+        Student memory newStudent = Student(id, name, age);
+        students.push(newStudent);
+        emit StudentAdded(id, name, age);
+    }
+
+    receive() external payable {
+        // Fallback function to receive Ether
+    }
+}
+
